@@ -135,6 +135,3 @@ ZSH_HIGHLIGHT_STYLES[default]='fg=250'
 
 KEYTIMEOUT=20
 bindkey '^I^I' autosuggest-accept
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
