@@ -27,3 +27,14 @@ fi
 # 使用 -f 强制覆盖，确保容器内的 .zshrc 指向你仓库里的这一份
 echo "🔗 链接 .zshrc 文件..."
 ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+
+# 链接配置文件
+echo "🔗 正在强制覆盖 .zshrc..."
+# 先删除容器自带的，防止链接失败
+rm -f "$HOME/.zshrc"
+# 建立软链接
+ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+
+# 【关键】强制刷新一次权限，并确保文件末尾没有被容器脚本偷偷修改
+# 有些镜像会在启动时检测 .zshrc，如果没有特定标记会重新生成
+touch "$HOME/.zshrc"
